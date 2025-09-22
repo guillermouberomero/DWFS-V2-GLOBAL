@@ -1,13 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useProductSuggestions } from '../../hooks/useProductSuggestions';
 import './ProductsFilter.css';
 
-export default function ProductsFilter({ filters, onFiltersChange, aggregations = [], products = [] }) {
+export default function ProductsFilter({ filters, onFiltersChange, aggregations = [] }) {
     const [localFilters, setLocalFilters] = useState(filters);
     const [showSuggestions, setShowSuggestions] = useState(false);
+    const [suggestionTimeout, setSuggestionTimeout] = useState(null);
     const nameInputRef = useRef(null);
     const suggestionsRef = useRef(null);
     const navigate = useNavigate();
+
+    const {
+        suggestions,
+        loadingSuggestions,
+        fetchSuggestions,
+        clearSuggestions
+    } = useProductSuggestions();
 
     useEffect(() => {
         setLocalFilters(filters);
@@ -35,11 +44,26 @@ export default function ProductsFilter({ filters, onFiltersChange, aggregations 
         const newFilters = { ...localFilters, name: value };
         setLocalFilters(newFilters);
 
-        // Mostrar sugerencias si hay 3+ caracteres
-        setShowSuggestions(value.trim().length >= 3);
+        // Limpiar timeout anterior
+        if (suggestionTimeout) {
+            clearTimeout(suggestionTimeout);
+        }
 
-        // Aplicar filtros para la búsqueda principal
-        if (value === '' || value.length >= 3) {
+        if (value.trim().length >= 3) {
+            // Mostrar sugerencias y hacer petición después de 300ms
+            setShowSuggestions(true);
+            const newTimeout = setTimeout(() => {
+                fetchSuggestions(value, localFilters.type);
+            }, 300);
+            setSuggestionTimeout(newTimeout);
+        } else {
+            // Limpiar sugerencias si hay menos de 3 caracteres
+            setShowSuggestions(false);
+            clearSuggestions();
+        }
+
+        // Solo aplicar filtros si el campo está vacío (para limpiar la búsqueda)
+        if (value === '') {
             onFiltersChange(newFilters);
         }
     };
@@ -48,17 +72,21 @@ export default function ProductsFilter({ filters, onFiltersChange, aggregations 
         if (e.key === 'Enter') {
             e.preventDefault();
             setShowSuggestions(false);
+            clearSuggestions();
+            // Solo al presionar Enter se ejecuta la búsqueda real
             onFiltersChange(localFilters);
         }
     };
 
     const handleSuggestionClick = (productId) => {
         setShowSuggestions(false);
+        clearSuggestions();
         navigate(`/products/${productId}`);
     };
 
     const handleSearchClick = (searchTerm) => {
         setShowSuggestions(false);
+        clearSuggestions();
         const newFilters = { ...localFilters, name: searchTerm };
         setLocalFilters(newFilters);
         onFiltersChange(newFilters);
@@ -66,6 +94,7 @@ export default function ProductsFilter({ filters, onFiltersChange, aggregations 
 
     const handleTypeClick = (selectedType) => {
         setShowSuggestions(false);
+        clearSuggestions();
         const newType = localFilters.type === selectedType ? '' : selectedType;
         const newFilters = { ...localFilters, type: newType };
         setLocalFilters(newFilters);
@@ -74,6 +103,7 @@ export default function ProductsFilter({ filters, onFiltersChange, aggregations 
 
     const clearFilters = () => {
         setShowSuggestions(false);
+        clearSuggestions();
         const clearedFilters = {
             name: '',
             type: ''
@@ -92,14 +122,18 @@ export default function ProductsFilter({ filters, onFiltersChange, aggregations 
             if (suggestionsRef.current && !suggestionsRef.current.contains(event.target) &&
                 nameInputRef.current && !nameInputRef.current.contains(event.target)) {
                 setShowSuggestions(false);
+                clearSuggestions();
             }
         };
 
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
+            if (suggestionTimeout) {
+                clearTimeout(suggestionTimeout);
+            }
         };
-    }, []);
+    }, [suggestionTimeout, clearSuggestions]);
 
     return (
         <div className="products-filter">
@@ -120,9 +154,16 @@ export default function ProductsFilter({ filters, onFiltersChange, aggregations 
                     {/* Sugerencias de búsqueda */}
                     {showSuggestions && localFilters.name.trim().length >= 3 && (
                         <div ref={suggestionsRef} className="suggestions-dropdown">
-                            {products.length > 0 && (
+                            {loadingSuggestions && (
+                                <div className="suggestion-item loading">
+                                    <div className="suggestion-spinner"></div>
+                                    Buscando sugerencias...
+                                </div>
+                            )}
+
+                            {!loadingSuggestions && suggestions.length > 0 && (
                                 <>
-                                    {products.slice(0, 8).map(product => (
+                                    {suggestions.map(product => (
                                         <div
                                             key={product.id}
                                             className="suggestion-item clickable"
@@ -137,7 +178,7 @@ export default function ProductsFilter({ filters, onFiltersChange, aggregations 
                                 </>
                             )}
 
-                            {products.length === 0 && (
+                            {!loadingSuggestions && suggestions.length === 0 && (
                                 <div
                                     className="suggestion-item search-fallback clickable"
                                     onClick={() => handleSearchClick(localFilters.name.trim())}

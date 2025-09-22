@@ -78,7 +78,6 @@ export default function Products() {
                 filters={filters}
                 onFiltersChange={applyFilters}
                 aggregations={aggregations}
-                products={products}
             />
 
             {/* Sección de productos */}
