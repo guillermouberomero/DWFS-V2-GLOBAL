@@ -5,6 +5,8 @@ export default function MainContent() {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
 
+    console.log('[MainContent] render', { email, error });
+
     function validateEmail(email) {
         // Expresión regular simple para validar email
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

@@ -5,6 +5,8 @@ import {GlobalContext} from "../../context/global/GlobalContext.jsx";
 export default function Menu() {
   const { darkMode, toggleDarkMode } = useContext(GlobalContext);
 
+  console.log('[Menu] render', { darkMode });
+
   return (
     <nav className={`menu${darkMode ? " dark" : ""}`}>
       <ul className="menu-list">

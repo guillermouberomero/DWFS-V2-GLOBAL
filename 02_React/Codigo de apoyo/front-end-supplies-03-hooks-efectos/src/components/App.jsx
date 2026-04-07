@@ -6,6 +6,8 @@ import {GlobalProvider} from "../context/global/GlobalProvider.jsx";
 
 export default function App() {
 
+    console.log('[App] render');
+
     return (
         <GlobalProvider>
             <div className="app-layout">

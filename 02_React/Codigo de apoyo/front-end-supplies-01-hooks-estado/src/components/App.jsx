@@ -5,6 +5,8 @@ import Menu from "./Menu/Menu.jsx";
 
 export default function App() {
 
+    console.log('[App] render');
+
     return (
         <div className="app-layout">
 

@@ -11,6 +11,8 @@ export default function MainContent() {
     // Custom hook que maneja toda la lógica de productos
     const { products, loading, error: fetchError } = useProducts();
 
+    console.log('[MainContent] render', { email, error, darkMode, loading, productos: products.length, fetchError });
+
     function validateEmail(email) {
         // Expresión regular simple para validar email
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

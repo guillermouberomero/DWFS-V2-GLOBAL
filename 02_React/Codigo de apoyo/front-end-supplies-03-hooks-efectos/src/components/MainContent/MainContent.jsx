@@ -13,6 +13,8 @@ export default function MainContent() {
 
     const { darkMode } = useContext(GlobalContext);
 
+    console.log('[MainContent] render', { email, error, darkMode, loading, productos: products.length, fetchError });
+
     function validateEmail(email) {
         // Expresión regular simple para validar email
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -42,6 +44,7 @@ export default function MainContent() {
 
     // useEffect para simular petición HTTP
     useEffect(() => {
+        console.log('[MainContent] useEffect [] ejecutado — montaje del componente');
         const fetchProducts = async () => {
             setLoading(true);
             setFetchError("");

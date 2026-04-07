@@ -4,6 +4,9 @@ import {GlobalContext} from "../../context/global/GlobalContext.jsx";
 
 export default function Footer() {
   const { darkMode } = useContext(GlobalContext);
+
+  console.log('[Footer] render', { darkMode });
+
   return (
     <footer className={`footer${darkMode ? " dark" : ""}`}>
       <p>© 2025 UNIR Supplies. Todos los derechos reservados.</p>
