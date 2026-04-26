@@ -2,9 +2,11 @@ import React from "react";
 import MainContent from "./MainContent/MainContent.jsx";
 import Footer from "./Footer/Footer.jsx";
 import Menu from "./Menu/Menu.jsx";
-import {GlobalProvider} from "../context/GlobalContext.jsx";
+import {GlobalProvider} from "../context/global/GlobalProvider.jsx";
 
 export default function App() {
+
+    console.log('[App] render');
 
     return (
         <GlobalProvider>

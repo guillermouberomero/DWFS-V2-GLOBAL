@@ -1,11 +1,13 @@
 import React, {useContext, useState} from "react";
 import "./MainContent.css";
-import {GlobalContext} from "../../context/GlobalContext.jsx";
+import {GlobalContext} from "../../context/global/GlobalContext.jsx";
 
 export default function MainContent() {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const { darkMode } = useContext(GlobalContext);
+
+    console.log('[MainContent] render', { email, error, darkMode });
 
     function validateEmail(email) {
         // Expresión regular simple para validar email

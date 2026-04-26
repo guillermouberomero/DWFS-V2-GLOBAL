@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import "./MainContent.css";
-import {GlobalContext} from "../../context/GlobalContext.jsx";
+import {GlobalContext} from "../../context/global/GlobalContext.jsx";
 import {mockProducts} from "../../utils/mockData";
 
 export default function MainContent() {
@@ -12,6 +12,8 @@ export default function MainContent() {
     const [fetchError, setFetchError] = useState("");
 
     const { darkMode } = useContext(GlobalContext);
+
+    console.log('[MainContent] render', { email, error, darkMode, loading, productos: products.length, fetchError });
 
     function validateEmail(email) {
         // Expresión regular simple para validar email
@@ -42,6 +44,7 @@ export default function MainContent() {
 
     // useEffect para simular petición HTTP
     useEffect(() => {
+        console.log('[MainContent] useEffect [] ejecutado — montaje del componente');
         const fetchProducts = async () => {
             setLoading(true);
             setFetchError("");

@@ -6,7 +6,10 @@ export function useProducts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  console.log('[useProducts] hook ejecutado', { loading, productos: products.length, error });
+
   useEffect(() => {
+    console.log('[useProducts] useEffect [] ejecutado — montaje del componente');
     const fetchProducts = async () => {
       setLoading(true);
       setError("");
