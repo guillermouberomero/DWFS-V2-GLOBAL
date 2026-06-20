@@ -1,5 +1,26 @@
 # Motores de Búsqueda
 
+## Consumo de API de OpenSearch / Elasticsearch
+
+El repositorio [`elasticsearch-operations-postman`](https://github.com/UnirCs/elasticsearch-operations-postman) es un buen recurso para familiarizarse con la API de OpenSearch sin instalaciones adicionales.
+
+Incluye instrucciones para crear un clúster de prueba y una colección de Postman con operaciones habituales de OpenSearch / Elasticsearch.
+
+## Consumo de Back-End desde Postman
+
+Para probar los servicios back-end de forma directa puedes importar la colección de Postman incluida en este repositorio:
+
+📁 [`00_Otros_Recursos/UNIR Supplies Back-End.postman_collection.json`](../00_Otros_Recursos/UNIR%20Supplies%20Back-End.postman_collection.json)
+
+La carpeta de la colección relevante para este tema es:
+
+### 📂 05 - Search Engine
+Recoge las operaciones relacionadas con el motor de búsqueda (OpenSearch/Elasticsearch):
+- **Migration**: lanza el proceso de migración/sincronización de los datos desde la base de datos relacional hacia el índice de OpenSearch, asegurando que ambas fuentes queden alineadas.
+- **Obtener datos**: realiza búsquedas de suministros contra el índice, con soporte para búsqueda por texto libre (nombre) y filtrado por tipo, explotando las capacidades del motor de búsqueda.
+
+---
+
 ## Front-end
 ```bash
 cd front-end-supplies-12-elastic
@@ -34,4 +55,3 @@ Este microservicio es una **versión modificada de `back-end-supplies-catalogue`
 4. **Gateway Secured**
 5. **Catalogue (Elasticsearch)**, **Orders & Events** y **Communications**
 6. **Front-end**
-

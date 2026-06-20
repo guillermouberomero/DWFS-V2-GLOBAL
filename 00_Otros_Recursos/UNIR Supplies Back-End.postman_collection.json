@@ -1,0 +1,965 @@
+{
+  "info": {
+    "_postman_id": "93e93b09-c852-4760-b206-1d546f663ab7",
+    "name": "UNIR Supplies Back-End",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3472643"
+  },
+  "item": [
+    {
+      "name": "01 - Supplies Catalogue",
+      "item": [
+        {
+          "name": "01 - Create Supplies",
+          "item": [
+            {
+              "name": "Create Supply",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Silla Ergonómica Noblechairs Jesus Edition Now 27 de abril\",\n    \"description\": \"Silla de oficina ergonómica premium\",\n    \"fullDescription\": \"Silla Noble Chairs Icon con soporte lumbar ajustable, reposabrazos y base de aluminio\",\n    \"type\": \"Furniture\",\n    \"price\": 450.5,\n    \"stock\": 500,\n    \"specifications\": [\n        {\n            \"specKey\": \"Adjustable Height\",\n            \"specValue\": \"Yes\"\n        },\n        {\n            \"specKey\": \"Marca\",\n            \"specValue\": \"Noblechairs UNIR\"\n        }\n    ],\n    \"images\": [\n        \"https://example.com/images/icon-front.jpg\",\n        \"https://example.com/images/icon-side.jpg\"\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/supplies",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "supplies"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "02 - Retrieve Supplies",
+          "item": [
+            {
+              "name": "Get one Supply",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/supplies/101",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "supplies",
+                    "101"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Supplies",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/supplies",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "supplies"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Supplies [Params]",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v2/supplies?name=boli&type=Storage",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v2",
+                    "supplies"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "boli"
+                    },
+                    {
+                      "key": "type",
+                      "value": "Storage"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Supplies [Pagination]",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v3/supplies?pageSize=2&type=Electronics&page=0",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v3",
+                    "supplies"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "2"
+                    },
+                    {
+                      "key": "type",
+                      "value": "Electronics"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "03 - Modify Supplies",
+          "item": [
+            {
+              "name": "Modify Supply (Root props)",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"stock\":590\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/supplies/105",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "supplies",
+                    "105"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Modify Supply (Linked props)",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"stock\": 1000,\n    \"specifications\": [\n        {\n            \"specKey\": \"Una unica verdad\",\n            \"specValue\": \"Ahora todo funciona\"\n        }\n    ],\n    \"images\": [\n        \"https://example.com/images/dell-noblechairs-front.jpg\"\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/supplies/105",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "supplies",
+                    "105"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Modify Supply",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Silla Ergonómica Noblechairs Hero 27-2 abril\",\n    \"description\": \"Silla de oficina ergonómica premium\",\n    \"fullDescription\": \"La mejor silla del mundo\",\n    \"type\": \"Furniture\",\n    \"price\": 950.5,\n    \"stock\": 500,\n    \"specifications\": [\n        {\n            \"specKey\": \"Una unica verdad\",\n            \"specValue\": \"Ahora todo funciona\"\n        },\n        {\n            \"specKey\": \"Despues de que\",\n            \"specValue\": \"De doblar el lomo\"\n        }\n    ],\n    \"images\": [\n        \"https://example.com/images/dell-noblechairs-front.jpg\",\n        \"https://example.com/images/dell-noblechairs-front-2.jpg\"\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/supplies/105",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "supplies",
+                    "105"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "04 - Remove Supplies",
+          "item": [
+            {
+              "name": "Delete Supply",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8080/api/v1/supplies/105",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8080",
+                  "path": [
+                    "api",
+                    "v1",
+                    "supplies",
+                    "105"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 - Supplies Orders",
+      "item": [
+        {
+          "name": "01 - Create Order",
+          "item": [
+            {
+              "name": "Create new order",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"supplies\":[\n      {\n         \"id\":99,\n         \"quantity\":2\n      }\n   ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8081/api/v1/orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "02 - Retrieve Orders",
+          "item": [
+            {
+              "name": "Retrieve orders",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8081/api/v1/orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8081",
+                  "path": [
+                    "api",
+                    "v1",
+                    "orders"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 - Gateway",
+      "item": [
+        {
+          "name": "Straight Gateway",
+          "item": [
+            {
+              "name": "Get one Supply",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8762/supplies-catalogue/api/v1/supplies/7",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-catalogue",
+                    "api",
+                    "v1",
+                    "supplies",
+                    "7"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Supplies",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8762/supplies-catalogue/api/v1/supplies",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-catalogue",
+                    "api",
+                    "v1",
+                    "supplies"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create new order",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"supplies\":[\n      {\n         \"id\":99,\n         \"quantity\":2\n      },\n      {\n         \"id\":26,\n         \"quantity\":1\n      },\n      {\n         \"id\":27,\n         \"quantity\":1\n      }\n   ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8762/supplies-orders/api/v1/orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-orders",
+                    "api",
+                    "v1",
+                    "orders"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Modify Supply",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"stock\":251\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8762/supplies-catalogue/api/v1/supplies/7",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-catalogue",
+                    "api",
+                    "v1",
+                    "supplies",
+                    "7"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "ACL Gateway",
+          "item": [
+            {
+              "name": "Get one Supply",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"targetMethod\": \"GET\",\n    \"queryParams\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8762/supplies-catalogue/api/v1/supplies/7",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-catalogue",
+                    "api",
+                    "v1",
+                    "supplies",
+                    "7"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Supplies",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"targetMethod\": \"GET\",\n    \"queryParams\": {\n        \"name\":[\"boli\"],\n        \"type\":[\"storage\"]\n    }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8762/supplies-catalogue/api/v2/supplies",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-catalogue",
+                    "api",
+                    "v2",
+                    "supplies"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create new order",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"targetMethod\":\"POST\",\n   \"body\":{\n      \"supplies\":[\n         {\n            \"id\":99,\n            \"quantity\":2\n         }\n      ]\n   }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8762/supplies-orders/api/v1/orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-orders",
+                    "api",
+                    "v1",
+                    "orders"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 - Security",
+      "item": [
+        {
+          "name": "Gateway secured",
+          "item": [
+            {
+              "name": "[Secured] Get Supplies",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "f22d1ede-d193-48ad-a0ce-7eae8ed9eda6",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8762/supplies-catalogue/api/v3/supplies?price=30&pageSize=7&page=2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-catalogue",
+                    "api",
+                    "v3",
+                    "supplies"
+                  ],
+                  "query": [
+                    {
+                      "key": "price",
+                      "value": "30"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "7"
+                    },
+                    {
+                      "key": "Authorization",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "[Secured] Get user data",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "d23a3af8-2bc7-44a4-af27-17878609b171",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8762/supplies-users/api/v1/users/B87654321",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-users",
+                    "api",
+                    "v1",
+                    "users",
+                    "B87654321"
+                  ],
+                  "query": [
+                    {
+                      "key": "Authorization",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "[Secured] Modify Supply Copy",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "47e0e855-d9b1-440b-91f9-2f73ffa7268d",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Silla Ergonómica Noblechairs Hero\",\n    \"description\": \"Silla de oficina ergonómica premium\",\n    \"fullDescription\": \"La mejor silla del mundo\",\n    \"type\": \"Furniture\",\n    \"price\": 950.5,\n    \"stock\": 501,\n    \"specifications\": [\n        {\n            \"specKey\": \"Una unica verdad\",\n            \"specValue\": \"Ahora todo funciona\"\n        },\n        {\n            \"specKey\": \"Despues de que\",\n            \"specValue\": \"De doblar el lomo\"\n        }\n    ],\n    \"images\": [\n        \"https://example.com/images/dell-noblechairs-front.jpg\",\n        \"https://example.com/images/dell-noblechairs-front-2.jpg\"\n    ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8762/supplies-catalogue/api/v1/supplies/99",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8762",
+                  "path": [
+                    "supplies-catalogue",
+                    "api",
+                    "v1",
+                    "supplies",
+                    "99"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Tokens & session",
+          "item": [
+            {
+              "name": "New session",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"username\":\"B12345678\",\n   \"password\":\"e10adc3949ba59abbe56e057f20f883e\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8083/api/v1/tokens",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8083",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tokens"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Renew Session",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:8083/api/v1/tokens/1436d381-bede-409b-85d5-ae665e69677e/renewals",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8083",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tokens",
+                    "1436d381-bede-409b-85d5-ae665e69677e",
+                    "renewals"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Validate session",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:8083/api/v1/tokens/8807a064-765f-4edf-a8c3-201ae7a71714",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8083",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tokens",
+                    "8807a064-765f-4edf-a8c3-201ae7a71714"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get User data",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "accessToken",
+                    "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCMTIzNDU2NzgiLCJ1c2VySWQiOjEsImNpZiI6IkIxMjM0NTY3OCIsImlhdCI6MTc3NjUzOTU2NiwiZXhwIjoxNzc2NTM5ODY2fQ.184ICRFHV97kec_C3jrUuk-buvEj4yMjHTeg-ClAirx6mZxKbLY6W7PINqmGtV6gHpIuFfgvhlU3aODJcppA-w",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:8083/api/v1/users/B12345678",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "8083",
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "B12345678"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "05 - Search Engine",
+      "item": [
+        {
+          "name": "Migration",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8084/api/v1/migrations",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "api",
+                "v1",
+                "migrations"
+              ],
+              "query": [
+                {
+                  "key": "Authorization",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener datos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8084/api/v1/supplies?page=0&name=cas&type=Electronics",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "api",
+                "v1",
+                "supplies"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "name",
+                  "value": "cas"
+                },
+                {
+                  "key": "type",
+                  "value": "Electronics"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "06 - Stripe",
+      "item": [
+        {
+          "name": "Sync data",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8084/stripe/ingest-all",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "stripe",
+                "ingest-all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener supply",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8084/api/v1/supplies/89",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8084",
+              "path": [
+                "api",
+                "v1",
+                "supplies",
+                "89"
+              ],
+              "query": [
+                {
+                  "key": "Authorization",
+                  "value": "",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

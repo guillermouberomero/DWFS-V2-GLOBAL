@@ -5,6 +5,27 @@ En el repositorio [back-end-spring-basics](https://github.com/UnirCs/back-end-sp
 
 ---
 
+## Consumo de Back-End desde Postman
+
+Para probar los servicios back-end de forma directa puedes importar la colección de Postman incluida en este repositorio:
+
+📁 [`00_Otros_Recursos/UNIR Supplies Back-End.postman_collection.json`](../../00_Otros_Recursos/UNIR%20Supplies%20Back-End.postman_collection.json)
+
+Las carpetas de la colección relevantes para este tema son:
+
+### 📂 01 - Supplies Catalogue
+Agrupa las operaciones CRUD sobre el catálogo de suministros: creación de nuevos supplies, consulta individual o listada (con soporte para filtros y paginación), modificación parcial o completa, y eliminación.
+
+### 📂 02 - Supplies Orders
+Recoge las operaciones relacionadas con los pedidos: creación de una nueva orden indicando los suministros y cantidades deseadas, y consulta del listado de órdenes existentes.
+
+### 📂 03 - Gateway
+Incluye peticiones equivalentes a las anteriores pero canalizadas a través del API Gateway. Se divide en dos secciones:
+- **Straight Gateway**: las peticiones se enrutan directamente al microservicio de destino manteniendo el verbo HTTP original.
+- **ACL Gateway**: todas las peticiones se realizan como `POST`, incluyendo en el body el método destino y los parámetros necesarios, de forma que el gateway actúa como capa anti-corrupción.
+
+---
+
 ## Proyecto 07 - Carrito de pedidos
 
 ### Front-end

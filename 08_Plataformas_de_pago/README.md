@@ -1,5 +1,20 @@
 # Plataformas de Pago
 
+## Consumo de Back-End desde Postman
+
+Para probar los servicios back-end de forma directa puedes importar la colección de Postman incluida en este repositorio:
+
+📁 [`00_Otros_Recursos/UNIR Supplies Back-End.postman_collection.json`](../00_Otros_Recursos/UNIR%20Supplies%20Back-End.postman_collection.json)
+
+La carpeta de la colección relevante para este tema es:
+
+### 📂 06 - Stripe
+Recoge las operaciones de integración con Stripe:
+- **Sync data**: desencadena la sincronización masiva del catálogo de suministros con Stripe, registrando todos los productos y sus precios en la plataforma de pago para que puedan usarse en sesiones de checkout.
+- **Obtener supply**: consulta un suministro concreto, incluyendo el campo `stripePrice` que lo relaciona con el precio registrado en Stripe y permite iniciar el proceso de compra.
+
+---
+
 ## Front-end
 ```bash
 cd front-end-supplies-13-stripe

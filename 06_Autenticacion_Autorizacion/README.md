@@ -1,5 +1,20 @@
 # Autenticación y Autorización
 
+## Consumo de Back-End desde Postman
+
+Para probar los servicios back-end de forma directa puedes importar la colección de Postman incluida en este repositorio:
+
+📁 [`00_Otros_Recursos/UNIR Supplies Back-End.postman_collection.json`](../00_Otros_Recursos/UNIR%20Supplies%20Back-End.postman_collection.json)
+
+La carpeta de la colección relevante para este tema es:
+
+### 📂 04 - Security
+Agrupa las operaciones relacionadas con la seguridad de la plataforma. Se divide en dos secciones:
+- **Gateway secured**: peticiones a los microservicios de negocio a través del gateway securizado, enviando el token de sesión en la cabecera `Authorization`. Permite comprobar que el acceso a recursos protegidos requiere autenticación válida.
+- **Tokens & session**: operaciones de gestión del ciclo de vida de la sesión: creación de una nueva sesión (login), renovación del token antes de que expire, validación del estado de un token activo y consulta de los datos del usuario autenticado.
+
+---
+
 ## Front-end
 ```bash
 cd front-end-supplies-11-auth
